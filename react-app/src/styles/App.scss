@@ -1,0 +1,5 @@
+@import "./normalize.css", "./media", "./mixins", "./utils", "./variables",
+  "./fonts";
+@import "../pages/User";
+@import "../components/Navbar/NavBar", "../components/UserProfile/UserProfile",
+  "../components/UserHead/UserHead", "../components/UserMain/UserMain";

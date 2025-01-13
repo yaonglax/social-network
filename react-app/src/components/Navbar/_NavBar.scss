@@ -1,0 +1,33 @@
+.navbar {
+  background-color: white;
+  width: 100vw;
+  height: 4em;
+  max-height: 4em;
+  position: sticky;
+
+  &-container {
+    height: 100%;
+
+    &__wrapper {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+    &-logoimage {
+      width: 100px;
+      height: 80px;
+      object-fit: scale-down;
+    }
+    &-description {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      font-size: 20px;
+    }
+  }
+}

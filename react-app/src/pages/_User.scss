@@ -1,0 +1,14 @@
+body {
+  background-color: #e0e0e0;
+  font-family: "Poppins", sans-serif;
+}
+
+.userpage {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__main {
+    padding-bottom: 20px;
+  }
+}
