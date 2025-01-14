@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@mui/icons-material": "^6.3.1",
+    "@userfront/toolkit": "^1.0.10",
     "axios": "^1.7.9",
+    "bcryptjs": "^2.4.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.1.1",
