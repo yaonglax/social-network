@@ -9,7 +9,6 @@ const generateAccessToken = (id, username) => {
     const payload = {
         id, username
     }
-
     return jwt.sign(payload, process.env.SERCRET_KEY, {expiresIn: "24h"})
 }
 
@@ -60,7 +59,15 @@ class AuthController {
                 res.status(400).json({message: 'Пароль неверный!'})
             }
             const token = generateAccessToken(user.user_id, username)
-            return res.json({token})
+            res.cookie('token', token, {
+                httpOnly: true,
+                secure: false,
+                maxAge: 24 * 60 * 60 * 1000,
+                sameSite: 'strict',
+            });
+
+
+            return res.json({message: 'Успешная авторизация!', user_id: user.user_id, token});
         } catch (e) {
             console.log(e)
             res.status(400).json({message: 'Ошибка!'})

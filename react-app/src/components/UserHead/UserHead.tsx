@@ -1,5 +1,9 @@
+interface UserHeadProps {
+    username?: string;
+}
 
-const UserHead = () => {
+const UserHead: React.FC<UserHeadProps> = ({username}) => {
+
     return (
         <div className="userhead">
             <div className="userhead__container">
@@ -11,8 +15,9 @@ const UserHead = () => {
                         </div>
                         <div className="userhead__header-bottom">
                             <div className="userhead__header-bottom-cover userhead__cover">
-                                <div className="userhead__cover-title">introducing<br />
-                                    yaonglax</div>
+                                <div className="userhead__cover-title">introducing<br/>
+                                    {username}
+                                </div>
                                 <span className="userhead__cover-description">Welcome to yaonglax' space!</span>
                             </div>
                         </div>
