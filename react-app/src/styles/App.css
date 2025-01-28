@@ -14,8 +14,7 @@
   border: 0 !important;
   padding: 0 !important;
   white-space: nowrap !important;
-  -webkit-clip-path: inset(100%) !important;
-          clip-path: inset(100%) !important;
+  clip-path: inset(100%) !important;
   clip: rect(0 0 0 0) !important;
   overflow: hidden !important;
 }
@@ -71,6 +70,34 @@ body {
   padding-bottom: 20px;
 }
 
+.auth {
+  height: 100vh;
+}
+.auth-container {
+  height: 100%;
+}
+.auth-container__wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.auth__form-wrapper {
+  background-color: white;
+  padding: 10px;
+  border-radius: 0.5rem;
+}
+.auth__form-login {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-direction: column;
+}
+.auth__form-title {
+  margin: 0;
+}
+
 .navbar {
   background-color: white;
   width: 100vw;
@@ -93,8 +120,7 @@ body {
 .navbar-container-logoimage {
   width: 100px;
   height: 80px;
-  -o-object-fit: scale-down;
-     object-fit: scale-down;
+  object-fit: scale-down;
 }
 .navbar-container-description {
   position: absolute;
@@ -211,8 +237,7 @@ body {
 }
 .usermain__info-img {
   max-height: 300px;
-  -o-object-fit: scale-down;
-     object-fit: scale-down;
+  object-fit: scale-down;
   border-bottom-left-radius: 0.5rem;
   transform: scale(1.5);
 }
@@ -267,4 +292,6 @@ body {
 .usermain__info-table td {
   border-bottom: 1px solid black;
   font-size: 14px;
-}/*# sourceMappingURL=App.css.map */
+}
+
+/*# sourceMappingURL=App.css.map */

@@ -1,0 +1,36 @@
+.auth {
+
+  height: 100vh;
+
+  &-container {
+    height: 100%;
+
+    &__wrapper {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &__form {
+    &-wrapper {
+      background-color: white;
+      padding: 10px;
+      border-radius: 0.5rem;
+    }
+
+    &-login {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-direction: column;
+
+    }
+
+    &-title {
+      margin: 0;
+    }
+  }
+}

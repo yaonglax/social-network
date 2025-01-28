@@ -16,3 +16,181 @@
     }
   }
 }
+
+.userhead {
+  width: 100%;
+
+  &__container {
+    width: 100%;
+
+    &-wrapper {
+      width: 100%;
+      border-radius: 0.5rem;
+      background-color: #fff;
+    }
+  }
+
+  &__header {
+    width: 100%;
+
+    &-top {
+      border-radius: 0.5rem 0.5rem 0 0;
+      background-color: #ededed;
+      color: #818181;
+      display: flex;
+      flex-direction: column;
+      text-transform: lowercase;
+      gap: 10px;
+      padding: 10px 8px;
+    }
+
+    &-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    &-description {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    &-bottom {
+      padding: 10px 8px;
+      width: 100%;
+    }
+  }
+
+  &__cover {
+    width: 85%;
+    margin: 0 auto;
+    background-color: gainsboro;
+    padding: 8px;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-between;
+
+    &-title {
+      font-size: 30px;
+      font-weight: 700;
+    }
+  }
+}
+
+.usermain {
+  width: 100%;
+
+  &__main {
+    padding-bottom: 16px;
+  }
+
+  &__btns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+  }
+
+  &__info {
+    width: 85%;
+    height: 100%;
+    max-height: 315px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8px;
+
+    &-left {
+      width: 48%;
+
+      &-wrapper {
+        border-radius: 0.5rem 0 1rem 0;
+      }
+    }
+
+    &-image {
+      display: inline-block;
+      width: 100%;
+      position: relative;
+      border-bottom-left-radius: 0.5rem;
+      overflow: hidden;
+    }
+
+    &-img {
+      max-height: 300px;
+      object-fit: scale-down;
+      border-bottom-left-radius: 0.5rem;
+      transform: scale(1.5);
+    }
+
+    &-infoblock {
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      background-color: #ededed;
+      padding: 8px;
+      border-bottom-left-radius: 0.5rem;
+    }
+
+    &-addition {
+      display: flex;
+      gap: 20px;
+      color: #8d8d8d;
+      font-weight: 700;
+
+      & > * {
+        position: relative;
+      }
+
+      :is(:not(:last-child))::before {
+        content: "●";
+        position: absolute;
+        right: -15px;
+      }
+    }
+
+    &-name {
+      font-size: 26px;
+      font-weight: 700;
+      color: #525252;
+    }
+
+    &-right {
+      width: 48%;
+
+      &-wrapper {
+        background-color: #ededed;
+        width: 100%;
+        height: 100%;
+        padding: 8px;
+        border-radius: 0 0.5rem 0.5rem 0;
+      }
+    }
+
+    &-table {
+      border-collapse: collapse;
+
+      &-row {
+        &:not(:first-of-type) td {
+          padding-top: 10px;
+        }
+      }
+
+      &-thead {
+        font-size: 26px;
+        font-weight: 800;
+        color: #525252;
+      }
+
+      td {
+        border-bottom: 1px solid black;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+

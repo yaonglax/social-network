@@ -9,7 +9,7 @@ const generateAccessToken = (id, username) => {
     const payload = {
         id, username
     }
-    return jwt.sign(payload, process.env.SERCRET_KEY, {expiresIn: "24h"})
+    return jwt.sign(payload, process.env.SECRET_KEY, {expiresIn: "24h"})
 }
 
 class AuthController {
@@ -51,12 +51,14 @@ class AuthController {
             const user = await User.findOne({where: {username}})
 
             if (!user) {
-                res.status(400).json({message: 'Такого пользователя не существует!'})
+
+                return res.status(400).json({message: 'Такого пользователя не существует!'})
+
             }
             const validPass = bcrypt.compareSync(password, user.user_pass)
 
             if (!validPass) {
-                res.status(400).json({message: 'Пароль неверный!'})
+                return res.status(401).json({message: 'Пароль неверный!'})
             }
             const token = generateAccessToken(user.user_id, username)
             res.cookie('token', token, {
@@ -67,12 +69,31 @@ class AuthController {
             });
 
 
-            return res.json({message: 'Успешная авторизация!', user_id: user.user_id, token});
+            return res.status(200).json({message: 'Успешная авторизация!', user_id: user.user_id, token});
         } catch (e) {
             console.log(e)
-            res.status(400).json({message: 'Ошибка!'})
+            return res.status(500).json({message: 'Ошибка!'})
         }
     }
+
+    async logout(req, res) {
+        const token = req.cookies.token
+        try {
+            if (token) {
+                res.clearCookie('token', {
+                    httpOnly: true,
+                    sameSite: 'strict'
+                })
+                return res.status(200).json({message: 'Вы вышли из аккаунта!'})
+            } else {
+                return res.status(401).json({message: 'Ошибка!'})
+            }
+        } catch (e) {
+            return res.status(400).json({message: 'Ошибка сервера'})
+        }
+    }
+
+
 }
 
 module.exports = new AuthController()
