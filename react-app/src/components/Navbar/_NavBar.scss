@@ -1,9 +1,15 @@
 .navbar {
   background-color: white;
   width: 100vw;
-  height: 4em;
-  max-height: 4em;
+  height: auto;
+  min-height: 4em;
   position: sticky;
+  border-bottom: 1px solid black;
+  transition: margin-bottom 0.3s ease-in;
+
+  &--expanded {
+    margin-bottom: 50px;
+  }
 
   &-container {
     height: 100%;
@@ -12,16 +18,16 @@
       width: 100%;
       height: 100%;
       display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
+      flex-direction: column;
+
     }
+
     &-logoimage {
       width: 100px;
       height: 80px;
       object-fit: scale-down;
     }
+
     &-description {
       position: absolute;
       left: 50%;
@@ -29,5 +35,36 @@
       white-space: nowrap;
       font-size: 20px;
     }
+
+    &__main-nav {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    &__sub-nav {
+
+      height: 0;
+      overflow: hidden;
+      transition: height 0.3s ease-in;
+
+      &--visible {
+        width: 100%;
+        height: 50px;
+      }
+    }
+
+    &__list {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+    }
   }
 }
+
+
+

@@ -1,8 +1,8 @@
 import {useEffect} from "react";
 import {useUser} from '../../hooks/useUser.ts'
-import StarRateIcon from '@mui/icons-material/StarRate';
-import CustomButtonBlack from '../CustomButton/CustomButtonBlack';
 import {useNavigate} from "react-router-dom";
+import {PeopleAlt, RssFeed} from "@mui/icons-material";
+import LinkIcon from '@mui/icons-material/Link';
 
 const UserProfile = () => {
     const navigate = useNavigate()
@@ -19,6 +19,7 @@ const UserProfile = () => {
                         const data = await res.json()
 
                         updateUser(data)
+                        console.log(data)
                     } else {
                         console.error('Ошибка загрузки', await res.text())
                     }
@@ -35,104 +36,54 @@ const UserProfile = () => {
         return <div>Загрузка данных пользователя...</div>;
     }
 
-    const handleLogOut = async () => {
-        try {
-            const res = await fetch('http://localhost:3000/api/users/logout', {
-                method: 'POST',
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-            })
 
-            if (res.ok) {
-                clearUser();
-                navigate('/login')
-            } else {
-                const data = res.json()
-                console.log('Ошибка выхода: ', data)
-            }
-        } catch (e) {
-            console.error(e)
-        }
-    }
     return (
         <div className="userprofile">
 
             <div className="userprofile-container container">
 
                 <div className="userprofile-container-wrapper">
-                    <div className="userhead">
-                        <div className="userhead__container">
-                            <div className="userhead__container-wrapper">
-                                <div className="userhead__header">
-                                    <div className="userhead__header-top">
-                                        <span className="userhead__header-title">Bloomie's space</span>
-                                        <span className="userhead__header-description">Bloom w/friends<i>!</i></span>
-                                    </div>
-                                    <div className="userhead__header-bottom">
-                                        <div className="userhead__header-bottom-cover userhead__cover">
-                                            <div className="userhead__cover-title">introducing<br/>
-                                                {user.username}
-                                            </div>
-                                            <span
-                                                className="userhead__cover-description">Welcome to {user.username}' space!</span>
-                                        </div>
-                                    </div>
+                    <div className="userprofile-info">
+                        <div className="userprofile-info__wrapper">
+                            <div className="userprofile-info__left">
+                                <div className="userprofile-info__userphoto">
+                                    <img src="/src/assets/carrd.jpg" alt="userphoto" className="userprofile-info__img"/>
                                 </div>
+                                <span className="userprofile-info-username">{user.username}</span>
                             </div>
+                            <div className="userprofile-info-right">
+                                <ul className="userprofile-info__list">
+                                    <li className="userprofile-info__item userprofile-info-status"><RssFeed/>i
+                                        saw
+                                        the
+                                        devil
+                                        by
+                                        the
+                                        window!!
+                                    </li>
+                                    <li className="userprofile-info__item userprofile-info-friendslist"><PeopleAlt
+                                        fontSize="medium"/>10 friends
+                                    </li>
+                                    <li className="userprofile-info__item userprofile-info-links"><LinkIcon/>links</li>
+                                    <li className="userprofile-info__item userprofile-info-gender">she/her</li>
+                                </ul>
+
+                            </div>
+
                         </div>
                     </div>
-                    <hr style={{width: "85%"}}/>
-                    <div className="usermain__main">
-                        <div className="usermain__btns">
-                            <CustomButtonBlack>profile</CustomButtonBlack>
-                            <CustomButtonBlack>fandoms</CustomButtonBlack>
-                            <CustomButtonBlack>home</CustomButtonBlack>
-                        </div>
-                        <div className="usermain__info">
-                            <div className="usermain__info-left">
-                                <div className="usermain__info-left-wrapper">
-                        <span className="usermain__info-image">
-                            <img src="/src/assets/carrd.jpg" alt="Info Cover" className="usermain__info-img"/>
-                            <div className="usermain__info-infoblock">
-                                <span className="usermain__info-name">{user.username} -<StarRateIcon fontSize='small'/></span>
-                                <p className="usermain__info-addition">
-                                    <span className="usermain__info-addition-prns">she/her</span>
-                                    <span className="usermain__info-addition-age">21</span>
-                                </p>
-                            </div>
-                        </span>
-
-                                </div>
-                            </div>
-                            <div className="usermain__info-right">
-                                <div className="usermain__info-right-wrapper">
-                                    <table className="usermain__info-table table">
-                                        <thead className='usermain__info-table-thead'>
-                                        <tr>
-                                            <th>know me more <StarRateIcon fontSize='medium'/></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody className="usermain__info-table-tbody tbody">
-                                        <tr className="usermain__info-table-row">
-                                            <td>about</td>
-                                        </tr>
-                                        <tr className="usermain__info-table-row">
-                                            <td>likes</td>
-                                        </tr>
-                                        <tr className="usermain__info-table-row">
-                                            <td>dislikes</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="userprofile-highlights">
+                        <h2 className="userprofile-highlights-title">Highlights</h2>
+                        <hr style={{border: 'none', borderTop: '2px solid lightgrey'}}/>
+                        <ul className="userprofile-highlights__list">
+                            <li className="userprofile-highlights__item">1</li>
+                            <li className="userprofile-highlights__item">2</li>
+                            <li className="userprofile-highlights__item">3</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <button onClick={handleLogOut}>Выйти</button>
+            {/*<button onClick={handleLogOut}>Выйти</button>*/}
         </div>
     )
 }

@@ -8,9 +8,10 @@ import {UserProvider} from "./context/UserContext.tsx";
 
 function App() {
     return (
+
         <UserProvider>
-            <NavBar/>
             <Router>
+                <NavBar/>
                 <Routes>
                     <Route path='/login' element={<Authentication/>}/>
                     <Route path='/registration' element={<Registration/>}/>
