@@ -83,7 +83,6 @@ const UserProfile = () => {
                     </div>
                 </div>
             </div>
-            {/*<button onClick={handleLogOut}>Выйти</button>*/}
         </div>
     )
 }

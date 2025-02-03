@@ -2,7 +2,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import {useNavigate} from "react-router-dom";
 import {useUser} from "../../hooks/useUser.ts";
 import {useState} from "react";
-
+import {isDesktop} from 'react-device-detect'
+import DesktopMenu from "../DesktopMenu/DesktopMenu.tsx";
 
 const NavBar = () => {
 
@@ -35,8 +36,9 @@ const NavBar = () => {
     const handleSubMenu = () => {
         setOpenedSubMenu(prev => !prev)
     }
+
     return (
-        <div className={`navbar ${openedSubMenu ? "navbar--expanded" : ""}`}>
+        <div className={`navbar ${openedSubMenu && isDesktop ? "navbar--expanded" : ""}`}>
             <div className='navbar-container container'>
                 <div className="navbar-container__wrapper">
                     <div className="navbar-container__main-nav">
@@ -46,16 +48,13 @@ const NavBar = () => {
                         <span className="navbar-container-description">Bloom w/friends!</span>
                         <button><MenuIcon fontSize="medium" onClick={handleSubMenu}/></button>
                     </div>
-                    <div
-                        className={`navbar-container__sub-nav ${openedSubMenu ? "navbar-container__sub-nav--visible" : ""}`}>
-                        <ul className="navbar-container__list">
-                            <li className="navbar-container__item item">Настройки</li>
-                            <li className="navbar-container__item item">
-                                <button className="navbar-container-button" type="button" onClick={handleLogOut}>Выйти
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
+                    {isDesktop ?
+                        <DesktopMenu openedSubMenu={openedSubMenu} handleLogOut={handleLogOut}/>
+                        :
+                        ""
+
+                    }
+
                 </div>
             </div>
         </div>
