@@ -21,12 +21,28 @@ class UserController {
         }
     };
 
+    async getUserIdByName(req, res) {
+        const {username} = req.query;
+        try {
+            const user = await User.findOne({where: {username}})
+
+            if (!user) {
+                return res.status(404).json({message: 'Пользователь не найден'})
+            }
+
+            res.json({user_id: user.user_id})
+        } catch (e) {
+            res.status(500).json({e: 'Ошибка сервера'})
+        }
+    }
+
 
     async getProfile(req, res) {
 
         const userId = req.user.id
+        const anotherUserId = req.query.anotherUserId || userId
         try {
-            const user = await User.findByPk(userId)
+            const user = await User.findByPk(anotherUserId)
             console.log(req.user)
 
             if (!user) {
@@ -40,6 +56,23 @@ class UserController {
         } catch (e) {
             console.error(e)
             res.status(500).json({message: 'Ошибка получения профиля!'})
+        }
+
+    }
+
+    async getUserProfile(req, res) {
+        const {username} = req.params
+
+        try {
+            const user = await User.findOne({where: {username}})
+            if (!user) {
+                return res.status(404).json({message: 'Такого пользователя нет!'})
+            }
+
+            res.json(user)
+
+        } catch (e) {
+            res.status(500).json({message: 'Ошибка сервера!'})
         }
     }
 }

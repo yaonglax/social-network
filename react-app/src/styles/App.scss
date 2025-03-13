@@ -1,4 +1,6 @@
 @import "./normalize.css", "./media", "./mixins", "./utils", "./variables",
-"./fonts";
+  "./fonts";
 @import "../pages/UserPage/User", "../pages/Authentication/Authentication";
-@import "../components/Navbar/NavBar", "../components/UserProfile/UserProfile";
+@import "../components/Navbar/NavBar", "../components/UserProfile/UserProfile",
+  "../components/DesktopMenu/DesktopMenu",
+  "../components/MobileSidebar/MobileSidebar";

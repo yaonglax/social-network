@@ -6,10 +6,14 @@
   position: sticky;
   border-bottom: 1px solid black;
   transition: margin-bottom 0.3s ease-in;
+  z-index: 3;
 
   &--expanded {
-
     margin-bottom: 50px;
+
+    @include mobile {
+      margin-bottom: 0;
+    }
   }
 
   &-container {
@@ -20,7 +24,6 @@
       height: 100%;
       display: flex;
       flex-direction: column;
-
     }
 
     &-logoimage {
@@ -34,7 +37,12 @@
       left: 50%;
       transform: translateX(-50%);
       white-space: nowrap;
-      font-size: 20px;
+
+      @include fluid-text(20, 16);
+
+      @media (max-width: 500px) {
+        display: none;
+      }
     }
 
     &__main-nav {
@@ -48,7 +56,6 @@
     }
 
     &__sub-nav {
-
       height: 0;
       overflow: hidden;
       transition: height 0.3s ease-in;
@@ -56,6 +63,11 @@
       &--visible {
         width: 100%;
         height: 50px;
+
+        @include mobile {
+          display: none;
+          height: 0;
+        }
       }
     }
 
@@ -64,8 +76,9 @@
       flex-direction: row;
       gap: 20px;
     }
+
+    &__burgerbutton {
+      @include hover;
+    }
   }
 }
-
-
-

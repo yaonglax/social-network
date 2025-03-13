@@ -1,12 +1,22 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useUser} from '../../hooks/useUser.ts'
-import {useNavigate} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {PeopleAlt, RssFeed} from "@mui/icons-material";
 import LinkIcon from '@mui/icons-material/Link';
 
+interface profileUserType {
+    user_id: number,
+    username: string
+}
+
 const UserProfile = () => {
-    const navigate = useNavigate()
-    const {user, updateUser, clearUser} = useUser()
+
+    const {username} = useParams()
+    const {user, updateUser} = useUser()
+    // const {userId, isLoading} = useSearch(username || "")
+    const [profileUser, setProfileUser] = useState<profileUserType | null>(null)
+    const [isLoading, setIsLoading] = useState(true)
+
     useEffect(() => {
         if (!user) {
             const fetchUser = async () => {
@@ -29,13 +39,39 @@ const UserProfile = () => {
             }
 
             fetchUser()
+
         }
     }, [user, updateUser]);
 
-    if (!user) {
-        return <div>Загрузка данных пользователя...</div>;
-    }
+    useEffect(() => {
+        if (!username) return;
 
+        const fetchProfileUser = async () => {
+            setIsLoading(true)
+            try {
+                const res = await fetch(`http://localhost:3000/api/users/profile/${username}`,
+                    {
+                        method: "GET",
+                        credentials: "include"
+                    })
+                if (res.ok) {
+                    const data = await res.json()
+                    setProfileUser(data)
+                } else {
+                    console.error("Ошибка загрузки пользователя")
+                    setProfileUser(null)
+                }
+            } catch (e) {
+                console.error(e)
+            } finally {
+                setIsLoading(false)
+            }
+        }
+        fetchProfileUser()
+    }, [username]);
+    console.log(profileUser)
+    
+    const displayUser = profileUser || user;
 
     return (
         <div className="userprofile">
@@ -49,9 +85,9 @@ const UserProfile = () => {
                                 <div className="userprofile-info__userphoto">
                                     <img src="/src/assets/carrd.jpg" alt="userphoto" className="userprofile-info__img"/>
                                 </div>
-                                <span className="userprofile-info-username">{user.username}</span>
+                                <span className="userprofile-info-username">{displayUser?.username}</span>
                             </div>
-                            <div className="userprofile-info-right">
+                            <div className="userprofile-info__right">
                                 <ul className="userprofile-info__list">
                                     <li className="userprofile-info__item userprofile-info-status"><RssFeed/>i
                                         saw
@@ -60,6 +96,8 @@ const UserProfile = () => {
                                         by
                                         the
                                         window!!
+                                        {profileUser && profileUser.user_id !== user?.id && !isLoading ?
+                                            <button>Добавить в друзья</button> : ""}
                                     </li>
                                     <li className="userprofile-info__item userprofile-info-friendslist"><PeopleAlt
                                         fontSize="medium"/>10 friends

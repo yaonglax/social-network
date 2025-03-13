@@ -1,11 +1,12 @@
 import * as React from "react";
 import {useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
+import {useUser} from "../../hooks/useUser";
 
 
 const Authentication = () => {
     const navigate = useNavigate()
-
+    const {user} = useUser()
     useEffect(() => {
         const verifyToken = async () => {
             try {
@@ -20,7 +21,7 @@ const Authentication = () => {
                 if (res.ok) {
                     const data = await res.json();
                     console.log("Токен валиден:", data);
-                    navigate('/userprofile');
+                    navigate(`/${loginInputs.username}`);
                 } else {
                     console.log("Ошибка проверки токена:", res.statusText);
                 }
@@ -64,7 +65,7 @@ const Authentication = () => {
 
                 localStorage.setItem('user_id', user_id)
                 console.log("success:", data)
-                navigate("/userprofile")
+                navigate(`/${loginInputs.username}`);
 
             } else {
                 const error = await response.json()

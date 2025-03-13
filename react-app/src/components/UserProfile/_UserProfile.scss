@@ -19,8 +19,6 @@
       padding: 10px;
       gap: 30px;
     }
-
-
   }
 
   &-info {
@@ -32,11 +30,27 @@
 
       @include mobile {
         flex-direction: column;
+        gap: 15px;
       }
     }
 
     &__left {
       width: 50%;
+
+      @media (max-width: 600px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+
+        transition: width 0.2s ease-in-out;
+      }
+    }
+
+    &__right {
+      @media (max-width: 600px) {
+        width: 100%;
+      }
     }
 
     &__userphoto {
@@ -52,7 +66,7 @@
     }
 
     &-username {
-      font-size: 1.6rem;
+      @include fluid-text(26, 20);
       font-style: italic;
       font-weight: 700;
       margin-left: 10px;
@@ -60,6 +74,7 @@
 
     &__item {
       display: flex;
+      gap: 10px;
       flex-direction: row;
       align-items: center;
 
@@ -96,11 +111,5 @@
       width: 20%;
       background-color: lightblue;
     }
-
-
   }
 }
-
-
-
-
