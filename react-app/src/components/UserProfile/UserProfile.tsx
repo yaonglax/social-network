@@ -13,7 +13,6 @@ const UserProfile = () => {
 
     const {username} = useParams()
     const {user, updateUser} = useUser()
-    // const {userId, isLoading} = useSearch(username || "")
     const [profileUser, setProfileUser] = useState<profileUserType | null>(null)
     const [isLoading, setIsLoading] = useState(true)
 
@@ -70,7 +69,7 @@ const UserProfile = () => {
         fetchProfileUser()
     }, [username]);
     console.log(profileUser)
-    
+
     const displayUser = profileUser || user;
 
     return (

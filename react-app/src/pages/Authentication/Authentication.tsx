@@ -21,7 +21,8 @@ const Authentication = () => {
                 if (res.ok) {
                     const data = await res.json();
                     console.log("Токен валиден:", data);
-                    navigate(`/${loginInputs.username}`);
+                    navigate(`/${data.user.username}`);
+
                 } else {
                     console.log("Ошибка проверки токена:", res.statusText);
                 }
