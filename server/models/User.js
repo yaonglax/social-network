@@ -16,6 +16,7 @@ const User = sequelize.define(
         user_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
         username: {type: DataTypes.STRING, allowNull: false},
         user_pass: {type: DataTypes.STRING, unique: true},
+        friendsCount: {type: DataTypes.INTEGER, allowNull: false, defaultValue: '0'}
     },
     {
         timestamps: true,

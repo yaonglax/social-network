@@ -1,0 +1,28 @@
+.sidebar {
+  width: 0;
+  height: 0;
+  display: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: red;
+  &--visible {
+    display: block;
+    width: 50%;
+    height: 100vh;
+    z-index: 5;
+  }
+
+  &-background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+}

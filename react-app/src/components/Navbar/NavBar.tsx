@@ -1,8 +1,8 @@
 import MenuIcon from '@mui/icons-material/Menu';
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from 'react';
-import { useUser } from "../../hooks/useUser.ts";
-import { useToggleMenu } from "../../hooks/useToggleMenu.ts";
+import {useNavigate} from "react-router-dom";
+import {useEffect, useState} from 'react';
+import {useUser} from "../../hooks/useUser.ts";
+import {useToggleMenu} from "../../hooks/useToggleMenu.ts";
 import DesktopMenu from "../DesktopMenu/DesktopMenu.tsx";
 import MobileSidebar from "../MobileSidebar/MobileSidebar.tsx";
 
@@ -14,8 +14,8 @@ export interface UserInfo {
 const NavBar = () => {
 
     const navigate = useNavigate();
-    const { clearUser } = useUser()
-    const { isSidebarOpen, isSubMenuOpen, closeAll, toggleMenu, isDesktop } = useToggleMenu()
+    const {clearUser} = useUser()
+    const {isSidebarOpen, isSubMenuOpen, closeAll, toggleMenu, isDesktop} = useToggleMenu()
     const [usersList, setUsersList] = useState<UserInfo[] | null>(null)
 
     useEffect(() => {
@@ -30,12 +30,10 @@ const NavBar = () => {
                     setUsersList(data)
 
 
-                }
-                else {
+                } else {
                     console.error('Ошибка при получении списка пользователей')
                 }
-            }
-            catch (e) {
+            } catch (e) {
                 console.log(e)
             }
         }
@@ -76,17 +74,20 @@ const NavBar = () => {
                 <div className="navbar-container__wrapper">
                     <div className="navbar-container__main-nav">
                         <span className="navbar-container-logo logo">
-                            <img src="/src/assets/logo.png" alt="Bloomie" className="navbar-container-logoimage" />
+                            <img src="/src/assets/logo.png" alt="Bloomie" className="navbar-container-logoimage"/>
                         </span>
                         <span className="navbar-container-description">Bloom w/friends!</span>
-                        <button className="navbar-container__burgerbutton"><MenuIcon fontSize="medium"
-                            onClick={toggleMenu} /></button>
+                        <button className="navbar-container__burgerbutton" onClick={toggleMenu}><MenuIcon
+                            fontSize="medium"
+                        /></button>
                     </div>
 
                     {isDesktop ?
-                        <DesktopMenu openedSubMenu={isSubMenuOpen} handleLogOut={handleLogOut} usersList={usersList || []} />
+                        <DesktopMenu openedSubMenu={isSubMenuOpen} handleLogOut={handleLogOut}
+                                     usersList={usersList || []}/>
                         :
-                        <MobileSidebar openedSidebar={isSidebarOpen} handleLogOut={handleLogOut} toggleMenu={toggleMenu} />}
+                        <MobileSidebar openedSidebar={isSidebarOpen} handleLogOut={handleLogOut}
+                                       toggleMenu={toggleMenu}/>}
 
 
                 </div>

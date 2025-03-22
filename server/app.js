@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const userRoutes = require("./routes/userRoutes");
+const friendshipRoutes = require("./routes/friendshipRoutes")
 const cookieParser = require('cookie-parser')
 
 
@@ -20,5 +21,6 @@ app.use(express.json());
 app.use(cookieParser())
 
 app.use("/api/users", userRoutes);
+app.use("/api/friends", friendshipRoutes)
 
 module.exports = app;

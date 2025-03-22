@@ -51,7 +51,8 @@ class UserController {
 
             res.status(200).json({
                 id: user.user_id,
-                username: user.username
+                username: user.username,
+                friendsCount: user.friendsCount
             })
         } catch (e) {
             console.error(e)

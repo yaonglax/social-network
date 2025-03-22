@@ -1,12 +1,9 @@
 import * as React from "react";
 import {useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
-import {useUser} from "../../hooks/useUser";
-
 
 const Authentication = () => {
     const navigate = useNavigate()
-    const {user} = useUser()
     useEffect(() => {
         const verifyToken = async () => {
             try {
