@@ -1,8 +1,8 @@
 import MenuIcon from '@mui/icons-material/Menu';
-import {useNavigate} from "react-router-dom";
-import {useEffect, useState} from 'react';
-import {useUser} from "../../hooks/useUser.ts";
-import {useToggleMenu} from "../../hooks/useToggleMenu.ts";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useUser } from "../../hooks/useUser.ts";
+import { useToggleMenu } from "../../hooks/useToggleMenu.ts";
 import DesktopMenu from "../DesktopMenu/DesktopMenu.tsx";
 import MobileSidebar from "../MobileSidebar/MobileSidebar.tsx";
 
@@ -14,8 +14,8 @@ export interface UserInfo {
 const NavBar = () => {
 
     const navigate = useNavigate();
-    const {clearUser} = useUser()
-    const {isSidebarOpen, isSubMenuOpen, closeAll, toggleMenu, isDesktop} = useToggleMenu()
+    const { clearUser } = useUser()
+    const { isSidebarOpen, isSubMenuOpen, closeAll, toggleMenu, isDesktop } = useToggleMenu()
     const [usersList, setUsersList] = useState<UserInfo[] | null>(null)
 
     useEffect(() => {
@@ -63,6 +63,7 @@ const NavBar = () => {
         }
         closeAll()
     }
+
     // const handleSubMenu = () => {
     //     setOpenedSubMenu(prev => !prev)
     //
@@ -74,7 +75,7 @@ const NavBar = () => {
                 <div className="navbar-container__wrapper">
                     <div className="navbar-container__main-nav">
                         <span className="navbar-container-logo logo">
-                            <img src="/src/assets/logo.png" alt="Bloomie" className="navbar-container-logoimage"/>
+                            <img src="/src/assets/logo.png" alt="Bloomie" className="navbar-container-logoimage" />
                         </span>
                         <span className="navbar-container-description">Bloom w/friends!</span>
                         <button className="navbar-container__burgerbutton" onClick={toggleMenu}><MenuIcon
@@ -84,10 +85,10 @@ const NavBar = () => {
 
                     {isDesktop ?
                         <DesktopMenu openedSubMenu={isSubMenuOpen} handleLogOut={handleLogOut}
-                                     usersList={usersList || []}/>
+                            usersList={usersList || []} />
                         :
                         <MobileSidebar openedSidebar={isSidebarOpen} handleLogOut={handleLogOut}
-                                       toggleMenu={toggleMenu}/>}
+                            toggleMenu={toggleMenu} />}
 
 
                 </div>

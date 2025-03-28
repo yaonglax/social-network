@@ -13,7 +13,8 @@
   border: 0 !important;
   padding: 0 !important;
   white-space: nowrap !important;
-  clip-path: inset(100%) !important;
+  -webkit-clip-path: inset(100%) !important;
+          clip-path: inset(100%) !important;
   clip: rect(0 0 0 0) !important;
   overflow: hidden !important;
 }
@@ -127,7 +128,8 @@ body {
 .navbar-container-logoimage {
   width: 100px;
   height: 80px;
-  object-fit: scale-down;
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
 }
 .navbar-container-description {
   position: absolute;
@@ -234,6 +236,7 @@ body {
 }
 .userprofile-info__item {
   display: flex;
+  position: relative;
   gap: 10px;
   flex-direction: row;
   align-items: center;
@@ -243,6 +246,20 @@ body {
   font-size: 0.85rem;
   color: lightgray;
   font-style: italic;
+}
+.userprofile-info__requests-button {
+  position: absolute;
+  left: 3%;
+  top: 0px;
+  transform: translate(3%);
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  color: #fff;
+  border-radius: 50%;
+  border: none;
+  background-color: rgb(221, 71, 71);
+  padding: 0;
 }
 .userprofile-highlights {
   width: 100%;
@@ -292,6 +309,4 @@ body {
   height: 100vh;
   z-index: 3;
   background-color: rgba(0, 0, 0, 0.2);
-}
-
-/*# sourceMappingURL=App.css.map */
+}/*# sourceMappingURL=App.css.map */
